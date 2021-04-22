@@ -1,0 +1,64 @@
+if (isBuildModule.toBoolean()) {
+    //作为独立App应用运行
+    apply plugin: 'com.android.application'
+} else {
+    //作为组件运行
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion versions['compileSdkVersion']
+    buildToolsVersion versions['buildToolsVersion']
+
+
+    defaultConfig {
+        if (isBuildModule.toBoolean()) {
+            applicationId "com.demo.mvvmdemo.module.sample"
+        }
+        minSdkVersion versions['minSdkVersion']
+        targetSdkVersion versions['targetSdkVersion']
+        versionCode versions['versionCode']
+        versionName versions['versionName']
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    sourceSets {
+        main {
+            if (isBuildModule.toBoolean()) {
+                //独立运行
+                res.srcDir 'src/main/alone/res/'
+                manifest.srcFile 'src/main/alone/AndroidManifest.xml'
+            } else {
+                //合并到宿主
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                resources {
+                    //正式版本时，排除alone文件夹下所有调试文件
+                    exclude 'src/main/alone/*'
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation dependencieLibs['kotlin-stdlib']
+    implementation dependencieLibs['androidx-core-ktx']
+    implementation dependencieLibs['androidx-appcompat']
+    implementation dependencieLibs['android-material']
+    implementation dependencieLibs['androidx-constraintlayout']
+}

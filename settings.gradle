@@ -1,0 +1,9 @@
+include ':module_webview'
+include ':module_sdk'
+include ':module_login'
+include ':module_news'
+include ':module_sample'
+include ':common'
+include ':base'
+include ':app'
+rootProject.name = "MVVMDemo"
