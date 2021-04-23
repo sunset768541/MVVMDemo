@@ -8,19 +8,18 @@ if (isBuildModule.toBoolean()) {
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion versions['compileSdkVersion']
-    buildToolsVersion versions['buildToolsVersion']
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
 
 
     defaultConfig {
         if (isBuildModule.toBoolean()) {
             applicationId "com.demo.mvvmdemo.module.sample"
         }
-        minSdkVersion versions['minSdkVersion']
-        targetSdkVersion versions['targetSdkVersion']
-        versionCode versions['versionCode']
-        versionName versions['versionName']
-        consumerProguardFiles "consumer-rules.pro"
+        minSdkVersion   build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -53,14 +52,14 @@ android {
         }
     }
     //统一资源前缀，规范资源引用
-    resourcePrefix "c
+    resourcePrefix "sample_"
 }
 
 dependencies {
 
-    implementation dependencieLibs['kotlin-stdlib']
-    implementation dependencieLibs['androidx-core-ktx']
-    implementation dependencieLibs['androidx-appcompat']
-    implementation dependencieLibs['android-material']
-    implementation dependencieLibs['androidx-constraintlayout']
+    implementation deps.kotlin.kotlin_stdlib
+    implementation deps.core_ktx
+    implementation deps.app_compat
+    implementation deps.material
+    implementation deps.constraint_layout
 }
