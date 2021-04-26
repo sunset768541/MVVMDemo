@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-
+    api project(":base")
     implementation deps.core_ktx
     implementation deps.app_compat
     implementation deps.material

@@ -15,7 +15,7 @@ android {
         if (isBuildModule.toBoolean()) {
             applicationId "com.demo.mvvmdemo.module.news"
         }
-        minSdkVersion   build_versions.min_sdk
+        minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
@@ -54,14 +54,19 @@ android {
     }
     //统一资源前缀，规范资源引用
     resourcePrefix "news_"
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
     implementation project(':common')
-    implementation project(':base')
     implementation deps.kotlin.kotlin_stdlib
     implementation deps.core_ktx
     implementation deps.app_compat
     implementation deps.material
     implementation deps.constraint_layout
+    implementation deps.lifecycle.lifecycle_runtime
+    implementation 'com.android.support:multidex:2.0.1'
+
 }

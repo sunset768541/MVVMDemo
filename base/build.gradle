@@ -32,9 +32,17 @@ android {
 }
 
 dependencies {
-    implementation deps.kotlin.kotlin_stdlib
-    implementation deps.core_ktx
-    implementation deps.app_compat
-    implementation deps.material
-    implementation deps.constraint_layout
+    api deps.kotlin.kotlin_stdlib
+    api deps.core_ktx
+    api deps.app_compat
+    api deps.material
+    api deps.constraint_layout
+    api deps.okhttp.okhttp3
+    api deps.okhttp.okhttp_logging_interceptor
+    api deps.retrofit.runtime
+    api deps.retrofit.gson
+    api deps.retrofit.simplexml
+    api deps.retrofit.coroutines
+    api deps.glide.runtime
+    annotationProcessor deps.glide.compiler
 }
